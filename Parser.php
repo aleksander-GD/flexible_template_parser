@@ -11,9 +11,9 @@ class Parser
     private $templateFile;
 
     /**
-     * @param mixed $templateFile the template file to be parsed with data.
+     * @param string $templateFile the template file to be parsed with data.
      */
-    public function __construct($templateFile)
+    public function __construct(string $templateFile)
     {
         if ($this->checkTemplateFile($templateFile)) {
             $this->templateFile = file_get_contents($templateFile);
@@ -43,21 +43,21 @@ class Parser
     /**
      * Add value to the placeholder
      * 
-     * @param mixed $placeholderKey the placeholder key that will be replaced.
+     * @param string $placeholderKey the placeholder key that will be replaced.
      * @param mixed $placeholderValue the placeholder value that will replace the specific key in the template.
      */
-    public function addValueToPlaceholder($placeholderKey, $placeholderValue): void
+    public function addValueToPlaceholder(string $placeholderKey, $placeholderValue): void
     {
         $this->placeholderData[strtolower(trim($placeholderKey))] = $placeholderValue;
     }
 
     /**
-     * Method is used to check whether the file exists and that the attribute is set with a path.
+     * Method is used to check whether the file exists and that the variable is set with a path.
      * 
-     * @param mixed $templateFile file to be checked
+     * @param string $templateFile file to be checked
      * @return boolean If template variable is empty and the file does not exist return false, otherwise return true;
      */
-    private function checkTemplateFile($templateFile)
+    private function checkTemplateFile(string $templateFile)
     {
         return $templateFile !== '' && file_exists($templateFile);
     }
